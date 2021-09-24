@@ -1,6 +1,11 @@
+import FoodItem from '../../entity/FoodItem';
 import Restaurant from '../../entity/Restaurant';
 import User from '../../entity/User';
-import { CreateRestaurantDTO } from './RestaurantDTO';
+import {
+    CreateFoodItemDTO,
+    CreateRestaurantDTO,
+    FindFoodDTO,
+} from './RestaurantDTO';
 
 class RestaurantService {
     async createRestaurant(dto: CreateRestaurantDTO) {
@@ -22,10 +27,31 @@ class RestaurantService {
         const restaurants = await Restaurant.find();
         return restaurants;
     }
-    // async getMenuByRestaurantId(id: any) {
-    //     const restaurant = await Restaurant.findOne({ _id: id });
-    //     return restaurant;
-    // }
+    async createFoodItem(dto: CreateFoodItemDTO) {
+        const { name, userId, price, restaurantId } = dto;
+        const user = await User.findOne({ _id: userId }).select([
+            'name',
+            'email',
+        ]);
+        const restaurant = await Restaurant.findOne({
+            _id: restaurantId,
+        }).select(['name']);
+        const food = new FoodItem({
+            name: name,
+            price: price,
+            createdBy: user!,
+            restaurant: restaurant!,
+        });
+        await food.save();
+        return food;
+    }
+    async getFoodsByRestaurantId(dto: FindFoodDTO) {
+        const { restaurantId } = dto;
+        const food = await FoodItem.find({
+            restaurantId: restaurantId,
+        });
+        return food;
+    }
 }
 
 export default new RestaurantService();

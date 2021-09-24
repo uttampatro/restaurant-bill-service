@@ -24,6 +24,10 @@ const restaurantSchema = new Schema<RestaurantDTO>({
         type: Schema.Types.ObjectId,
         ref: 'user',
     },
+    foods: {
+        type: Schema.Types.ObjectId,
+        ref: 'foodItem',
+    },
 });
 
 export default model<RestaurantDTO>('restaurant', restaurantSchema);

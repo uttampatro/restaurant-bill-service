@@ -10,3 +10,14 @@ export interface CreateRestaurantDTO {
     description: string;
     imageUrl: string;
 }
+
+export interface CreateFoodItemDTO {
+    userId: string;
+    name: string;
+    price: string;
+    restaurantId: string;
+}
+
+export interface FindFoodDTO {
+    restaurantId: string;
+}

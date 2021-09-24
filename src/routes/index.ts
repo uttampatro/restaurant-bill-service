@@ -14,6 +14,8 @@ router.post('/login', UserController.loginUser);
 
 // Restaurant
 router.post('/createRestaurant', RestaurantController.createRestaurant);
+router.post('/createFoodItem', RestaurantController.createFoodItem);
 router.get('/restaurants', RestaurantController.fetchAllRestaurants);
+router.get('/foods/:id', RestaurantController.getFoodsByRestaurantId);
 
 export default router;
