@@ -48,7 +48,7 @@ class RestaurantService {
     async getFoodsByRestaurantId(dto: FindFoodDTO) {
         const { restaurantId } = dto;
         const food = await FoodItem.find({
-            restaurantId: restaurantId,
+            restaurant: restaurantId,
         });
         return food;
     }

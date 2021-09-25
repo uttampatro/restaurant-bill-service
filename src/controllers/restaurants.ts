@@ -55,9 +55,9 @@ class RestaurantController {
     };
     getFoodsByRestaurantId = async (req: Request, res: Response) => {
         try {
-            const restaurantId = req.params.restaurantId;
+            const restaurantId = req.params.id;
             const foods = await RestaurantService.getFoodsByRestaurantId({
-                restaurantId: restaurantId,
+                restaurantId,
             });
             return res.json(foods);
         } catch (error) {
