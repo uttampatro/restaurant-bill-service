@@ -4,7 +4,6 @@ import { model, Schema } from 'mongoose';
 const foodItemSchema = new Schema({
     name: {
         type: String,
-        unique: true,
         required: true,
         max: 255,
         min: 3,
@@ -14,9 +13,6 @@ const foodItemSchema = new Schema({
         required: true,
         max: 255,
         min: 3,
-    },
-    restaurantId: {
-        type: Schema.Types.ObjectId,
     },
     restaurant: {
         type: Schema.Types.ObjectId,

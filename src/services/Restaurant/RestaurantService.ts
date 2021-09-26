@@ -47,8 +47,11 @@ class RestaurantService {
     }
     async getFoodsByRestaurantId(dto: FindFoodDTO) {
         const { restaurantId } = dto;
+        const restaurant = await Restaurant.findOne({
+            _id: restaurantId,
+        }).select(['name']);
         const food = await FoodItem.find({
-            restaurant: restaurantId,
+            restaurant: restaurant,
         });
         return food;
     }
